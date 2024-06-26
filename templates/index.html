@@ -1,38 +1,49 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encoder/Decoder</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>LazyOwnEncoderDecoder</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Estilos personalizados aquí */
+    </style>
 </head>
-<body class="bg-dark text-white">
+<body>
     <div class="container">
-        <h1 class="mt-5 text-center">Encoder/Decoder</h1>
-        <form method="POST" class="mt-4">
+        <h1 class="mt-5 mb-4">LazyOwnEncoderDecoder</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="post">
             {{ form.hidden_tag() }}
             <div class="form-group">
-                {{ form.input_string.label(class="form-control-label") }}
+                {{ form.input_string.label(class="form-label") }}
                 {{ form.input_string(class="form-control") }}
             </div>
             <div class="form-group">
-                {{ form.shift_value.label(class="form-control-label") }}
+                {{ form.shift_value.label(class="form-label") }}
                 {{ form.shift_value(class="form-control") }}
             </div>
             <div class="form-group">
-                {{ form.substitution_key.label(class="form-control-label") }}
+                {{ form.substitution_key.label(class="form-label") }}
                 {{ form.substitution_key(class="form-control") }}
             </div>
-            <div class="form-group">
-                {{ form.encode(class="btn btn-primary") }}
-                {{ form.decode(class="btn btn-secondary") }}
-            </div>
+            <button type="submit" name="action" value="encode" class="btn btn-primary">Encode</button>
+            <button type="submit" name="action" value="decode" class="btn btn-primary ml-2">Decode</button>
         </form>
+
         {% if result %}
-        <div class="alert alert-info mt-4" role="alert">
-            Result: {{ result }}
-        </div>
+            <div class="mt-4">
+                <h5>Result:</h5>
+                <pre>{{ result }}</pre>
+            </div>
         {% endif %}
     </div>
 </body>
