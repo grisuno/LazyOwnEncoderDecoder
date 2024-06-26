@@ -4,7 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
-from encoder_decoder import encode, decode
+from lazyencoder_decoder import encode, decode
 
 class EncodeDecodeForm(FlaskForm):
     input_string = StringField('Input String', validators=[DataRequired()])
