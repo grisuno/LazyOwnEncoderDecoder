@@ -6,6 +6,7 @@ import encoder_decoder as ed
 import os
 
 app = Flask(__name__)
+app.config['SESSION_REFRESH_EACH_REQUEST'] = False
 app.config['SECRET_KEY'] = os.urandom(24)
 
 class EncodeDecodeForm(FlaskForm):
