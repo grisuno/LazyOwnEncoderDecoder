@@ -1,0 +1,30 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.form-control, .btn {
+    background-color: #333;
+    color: #0f0;
+    border: 1px solid #0f0;
+}
+
+.form-control::placeholder {
+    color: #0f0;
+}
+
+.btn-primary {
+    background-color: #0f0;
+    border-color: #0f0;
+}
+
+.btn-secondary {
+    background-color: #333;
+    border-color: #0f0;
+    color: #0f0;
+}
+
+.alert-info {
+    background-color: #333;
+    color: #0f0;
+    border-color: #0f0;
+}
