@@ -1,4 +1,3 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LazyOwnEncoderDecoder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link id="themeStylesheet" rel="stylesheet" href="{{ url_for('static', filename='css/light-mode.css') }}">
     <style>
-        /* Estilos personalizados aquí */
+        .btn-switch-mode {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5 mb-4">LazyOwnEncoderDecoder</h1>
+        <h1 class="mt-5 mb-4 neon-text">LazyOwnEncoderDecoder</h1>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -20,31 +22,48 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        
-        <form method="post">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.input_string.label(class="form-label") }}
-                {{ form.input_string(class="form-control") }}
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ form.input_string.label(class="form-label") }}
+                        {{ form.input_string(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.shift_value.label(class="form-label") }}
+                        {{ form.shift_value(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.substitution_key.label(class="form-label") }}
+                        {{ form.substitution_key(class="form-control") }}
+                    </div>
+                    <button type="submit" name="action" value="encode" class="btn btn-primary">Encode</button>
+                    <button type="submit" name="action" value="decode" class="btn btn-primary ml-2">Decode</button>
+                </form>
+                <button class="btn btn-secondary btn-switch-mode" onclick="switchMode()">Dark Mode</button>
             </div>
-            <div class="form-group">
-                {{ form.shift_value.label(class="form-label") }}
-                {{ form.shift_value(class="form-control") }}
+            <div class="col-md-6">
+                {% if result %}
+                    <div class="content">
+                        <h5>Result:</h5>
+                        <pre>{{ result }}</pre>
+                    </div>
+                {% endif %}
             </div>
-            <div class="form-group">
-                {{ form.substitution_key.label(class="form-label") }}
-                {{ form.substitution_key(class="form-control") }}
-            </div>
-            <button type="submit" name="action" value="encode" class="btn btn-primary">Encode</button>
-            <button type="submit" name="action" value="decode" class="btn btn-primary ml-2">Decode</button>
-        </form>
-
-        {% if result %}
-            <div class="mt-4">
-                <h5>Result:</h5>
-                <pre>{{ result }}</pre>
-            </div>
-        {% endif %}
+        </div>
     </div>
+    <script>
+        function switchMode() {
+            const themeStylesheet = document.getElementById('themeStylesheet');
+            if (themeStylesheet.getAttribute('href').includes('light-mode.css')) {
+                themeStylesheet.setAttribute('href', '{{ url_for('static', filename='css/dark-mode.css') }}');
+                document.querySelector('.btn-switch-mode').innerText = 'Light Mode';
+            } else {
+                themeStylesheet.setAttribute('href', '{{ url_for('static', filename='css/light-mode.css') }}');
+                document.querySelector('.btn-switch-mode').innerText = 'Dark Mode';
+            }
+        }
+    </script>
 </body>
 </html>
