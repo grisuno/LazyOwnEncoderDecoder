@@ -1,0 +1,21 @@
+{
+  "tool": "readmenator",
+  "generated_at": "2026-09-16T05:00:31Z",
+  "project_root": "/tmp/push_LazyOwnEncoderDecoder_20260916_013256",
+  "files": 2,
+  "symbols": 13,
+  "imports": 104,
+  "resolved_imports": 1,
+  "security_findings": 0,
+  "languages": {
+    "py": 2
+  },
+  "entrypoints": [],
+  "start_here": "INDEX.md",
+  "workflow": [
+    "grep -n '<keyword>' INDEX.md",
+    "cat KB_<subsystem>.md",
+    "grep -n '<file>' ARCHITECTURE.md SYMBOLS.md"
+  ],
+  "regenerate": "readmenator . --rebuild"
+}
