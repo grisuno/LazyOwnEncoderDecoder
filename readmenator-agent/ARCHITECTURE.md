@@ -6,5 +6,11 @@
 
 ## External Imports
 
-- `app.py` -> flask, flask_bootstrap, flask_wtf, os, wtforms, wtforms.validators
-- `lazyencoder_decoder.py` -> base64
+- `app.py` -> `flask`
+- `app.py` -> `flask_bootstrap`
+- `app.py` -> `flask_wtf`
+- `app.py` -> `lazyencoder_decoder`
+- `app.py` -> `os`
+- `app.py` -> `wtforms`
+- `app.py` -> `wtforms.validators`
+- `lazyencoder_decoder.py` -> `base64`
