@@ -1,0 +1,47 @@
+{
+  "concepts": [
+    {
+      "name": "decode",
+      "files": [
+        "app.py",
+        "lazyencoder_decoder.py"
+      ],
+      "mentions": 4,
+      "confidence": "EXTRACTED"
+    },
+    {
+      "name": "encode",
+      "files": [
+        "app.py",
+        "lazyencoder_decoder.py"
+      ],
+      "mentions": 4,
+      "confidence": "EXTRACTED"
+    }
+  ],
+  "relations": [
+    {
+      "source": "decode",
+      "target": "encode",
+      "verb": "depends_on",
+      "strength": 1.0,
+      "confidence": "INFERRED",
+      "evidence": [
+        "app.py->lazyencoder_decoder.py"
+      ]
+    },
+    {
+      "source": "encode",
+      "target": "decode",
+      "verb": "depends_on",
+      "strength": 1.0,
+      "confidence": "INFERRED",
+      "evidence": [
+        "app.py->lazyencoder_decoder.py"
+      ]
+    }
+  ],
+  "dialectic": [
+    "Thesis: `decode` centralizes 2 files; Antithesis: `encode` pulls 2 files with 2 shared (Jaccard 1.00); Synthesis: should they merge, split by layer, or keep `depends_on` explicit?"
+  ]
+}
